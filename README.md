@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/andreacw5/manager-skill/main/docs/brand/banner.png" width="500" alt="manager, a Claude Code plugin" />
+  <img src="https://raw.githubusercontent.com/andreacw96/manager-skill/main/docs/brand/banner.png" width="500" alt="manager, a Claude Code plugin" />
 </p>
 
 # manager
@@ -15,14 +15,14 @@ Requires `git`.
 In Claude Code:
 
 ```
-/plugin marketplace add andreacw5/manager-skill
+/plugin marketplace add andreacw96/manager-skill
 /plugin install manager@manager-skill
 ```
 
 To install it without the plugin system, copy the skill folder by hand:
 
 ```bash
-git clone https://github.com/andreacw5/manager-skill /tmp/manager-skill && mkdir -p ~/.claude/skills && cp -r /tmp/manager-skill/skills/manager ~/.claude/skills/
+git clone https://github.com/andreacw96/manager-skill /tmp/manager-skill && mkdir -p ~/.claude/skills && cp -r /tmp/manager-skill/skills/manager ~/.claude/skills/
 ```
 
 ## Use
