@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/andreacw5/manager-skill/main/docs/brand/banner.png" width="500" alt="manager — Claude Code plugin" />
+  <img src="https://raw.githubusercontent.com/andreacw5/manager-skill/main/docs/brand/banner.png" width="500" alt="manager, a Claude Code plugin" />
 </p>
 
-# manager — a Claude Code skill
+# manager
 
-Turns Claude into a **manager, not an executor**. Once invoked, Claude plans the work, writes a brief for each piece, hands it to a separate session or subagent on the **cheapest model that can do it**, checks the evidence each worker returns, and keeps you posted.
+A Claude Code skill that makes Claude delegate instead of doing the work itself. Claude plans the task, writes a brief for each piece, and hands each one to a separate session or subagent running the cheapest model that can handle it. When a worker reports back, Claude checks the evidence and tells you what landed.
 
-Why use it: long tasks stay cheap (haiku and sonnet do most of the work), your main session's context stays clean, and nothing counts as done until it is checked against `git` / `gh`.
+Most of the work runs on haiku and sonnet, so long tasks cost less. Your main session's context also stays small, and a task only counts as done after Claude has checked it against `git` and `gh`.
 
 ## Install
 
@@ -17,7 +17,7 @@ In Claude Code:
 /plugin install manager@manager-skill
 ```
 
-Manual alternative, without the plugin system:
+To install it without the plugin system, copy the skill folder by hand:
 
 ```bash
 git clone https://github.com/andreacw5/manager-skill /tmp/manager-skill && cp -r /tmp/manager-skill/skills/manager ~/.claude/skills/
@@ -25,27 +25,27 @@ git clone https://github.com/andreacw5/manager-skill /tmp/manager-skill && cp -r
 
 ## Use
 
-Say `/manager`, "manager mode", "delegate everything", or in Italian "modalità manager" / "fai il gestore".
-Turn it off with "stop manager" or "normal mode".
+Start it with `/manager`, "manager mode" or "delegate everything". It also understands Italian ("modalità manager", "fai il gestore"). Say "stop manager" or "normal mode" to turn it off.
 
-Then just describe the work, for example: *"Bump the SDK in api and web, fix the breaking changes, open PRs."*
+Then describe the work as usual, for example: *"Bump the SDK in api and web, fix the breaking changes, open PRs."*
 
 ## How it works
 
 | Step | What Claude does |
 |------|------------------|
 | Plan | Splits the request into independent pieces, one per repo or area |
-| Brief | Sends each worker a fixed template: goal, path, constraints, a concrete "done" check, where to stop, what to report |
-| Route | Picks the model by **ambiguity, not size**: haiku for mechanical work, sonnet by default, opus for unclear or risky work, fable for independent review |
-| Verify | Treats a report as a claim and checks branch, diff stat, tests and CI before saying it's done |
-| Escalate | Retries once with a better brief, then moves up a tier |
+| Brief | Sends each worker the same template: goal, path, constraints, a concrete check for "done", where to stop, what to report |
+| Route | Picks the model by how clear the task is, whatever its size: haiku for mechanical work, sonnet by default, opus for unclear or risky work, fable for independent review |
+| Verify | Treats each report as a claim and checks the branch, diff stat, tests and CI before calling it done |
+| Escalate | If the brief caused a failure, fixes it and retries once on the same model. Otherwise moves haiku to sonnet after one failure, and sonnet to opus after two |
 
-Rules it follows: it never edits project repos itself, runs at most 4 workers at once, gives each repo one writer, and never merges or pushes without your explicit OK.
+Claude never edits project repos itself while the mode is on. It runs at most 4 workers at a time, allows one writer per repo, and merges or pushes only after you approve.
 
 ## Compatibility
 
-- **Claude desktop app (Code tab):** full mode. Each piece runs in its own session and worktree, and you can open and steer any of them.
-- **CLI / IDE / other clients:** works on subagents (`Agent` tool, worktree isolation). Same rules and briefs; workers just aren't separate sessions you can open.
+In the Claude desktop app (Code tab), each piece runs in its own session and worktree, and you can open and steer any of them.
+
+In the CLI, IDE extensions and other clients, the workers are subagents (the `Agent` tool with worktree isolation). The rules and briefs are the same, but you can't open the workers as separate sessions.
 
 ## License
 
