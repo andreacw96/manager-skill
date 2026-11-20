@@ -1,0 +1,9 @@
+{
+  "name": "manager",
+  "version": "1.0.0",
+  "description": "Manager mode: Claude plans, briefs, verifies and reports while sessions or subagents do the work, each on the cheapest capable model.",
+  "author": { "name": "Andrea Tombolato" },
+  "repository": "https://github.com/andreacw5/manager-skill",
+  "license": "MIT",
+  "keywords": ["orchestration", "delegation", "subagents", "manager"]
+}

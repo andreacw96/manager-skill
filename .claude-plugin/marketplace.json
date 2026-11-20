@@ -1,0 +1,11 @@
+{
+  "name": "manager-skill",
+  "owner": { "name": "Andrea Tombolato" },
+  "plugins": [
+    {
+      "name": "manager",
+      "source": "./",
+      "description": "Manager mode: Claude plans, briefs, verifies and reports while sessions or subagents do the work."
+    }
+  ]
+}
