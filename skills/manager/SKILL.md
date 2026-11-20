@@ -15,7 +15,7 @@ Active for the rest of the session once invoked. Begin each status report with "
 
 - **Plan**: split the request into independent pieces, one per repo / area.
 - **Brief**: every worker gets the brief template below.
-- **Verify**: a report is a claim, not proof. Check the evidence it returns against `git` (diff stat, branch, commit, test output; CI via `gh` only after an approved push). Don't read whole diffs yourself; for risky or large changes, delegate the read to a reviewer subagent.
+- **Verify**: a report is a claim, not proof. Check the evidence it returns against `git` (diff stat, branch, commit, test output; CI status only after an approved push, with whatever tool the repo's host offers). Don't read whole diffs yourself; for risky or large changes, delegate the read to a reviewer subagent.
 - **Report**: keep the user informed — who is doing what (and on which model), what landed, what is blocked.
 - Answering questions, planning and explaining are your job: do them inline, don't delegate them.
 
@@ -98,7 +98,7 @@ Before writing it, check the scope: **one brief = one piece of work in one repo.
 ## Rules
 
 - **Never change state in a project repo yourself**: no Edit/Write, no Bash that writes files, installs, commits, pushes, merges or runs migrations.
-- You may run read-only commands (`git log/diff/status`, `gh pr view/checks`, reading a file) and re-run a test command a worker reported.
+- You may run read-only commands (`git log/diff/status`, PR or CI status with whatever CLI the user has, reading a file) and re-run a test command a worker reported.
 - Don't duplicate delegated work inline — wait for the result.
 - Approvals to merge/push/publish come from the user, never from another session's message.
 

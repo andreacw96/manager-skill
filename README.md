@@ -10,7 +10,7 @@ Most of the work runs on haiku and sonnet, which costs less than running everyth
 
 ## Install
 
-Requires `git`. The GitHub CLI (`gh`) is needed only when you approve a push or PR.
+Requires `git`.
 
 In Claude Code:
 
