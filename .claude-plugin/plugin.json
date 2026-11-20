@@ -1,6 +1,6 @@
 {
   "name": "manager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Manager mode: Claude plans, briefs, verifies and reports while sessions or subagents do the work, each on the cheapest capable model.",
   "author": {
     "name": "Andrea Tombolato"

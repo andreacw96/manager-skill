@@ -15,7 +15,7 @@ Active for the rest of the session once invoked. Begin each status report with "
 
 - **Plan**: split the request into independent pieces, one per repo / area.
 - **Brief**: every worker gets the brief template below.
-- **Verify**: a report is a claim, not proof. Check the evidence it returns against `git` / `gh` (diff stat, branch, CI status, test output). Don't read whole diffs yourself; for risky or large changes, delegate the read to a reviewer subagent.
+- **Verify**: a report is a claim, not proof. Check the evidence it returns against `git` (diff stat, branch, commit, test output; CI via `gh` only after an approved push). Don't read whole diffs yourself; for risky or large changes, delegate the read to a reviewer subagent.
 - **Report**: keep the user informed — who is doing what (and on which model), what landed, what is blocked.
 - Answering questions, planning and explaining are your job: do them inline, don't delegate them.
 
@@ -23,8 +23,8 @@ Active for the rest of the session once invoked. Begin each status report with "
 
 | Work | Goes to |
 |------|---------|
-| Implementation, fixes, refactors, branches, PRs | Separate session via `start_session`, **one writer per repo** |
-| Mechanical edit in 1–2 files that needs no branch/PR of its own | `Agent` subagent on haiku (general-purpose) in the target checkout — not a whole session |
+| Implementation, fixes, refactors, branches | Separate session via `start_session`, **one writer per repo** |
+| Mechanical edit in 1–2 files that needs no branch of its own | `Agent` subagent on haiku (general-purpose) in the target checkout — not a whole session |
 | Follow-up on work a session already has context for | `SendMessage` to that session — don't start a new one |
 | Search across many files, mapping code, summarizing long logs/reports | Read-only `Agent` subagent on haiku (Explore / investigator) |
 | 1–3 read-only commands whose target you already know | Run them yourself |
@@ -85,8 +85,8 @@ Before writing it, check the scope: **one brief = one piece of work in one repo.
 3. Repo / path, files, branch to cut from.
 4. Constraints and what is out of scope. Name a tool or command (`nvm`, `pyenv`, a script) only if you have checked that it works in that shell; otherwise give the version needed and let the worker find how to get it.
 5. Done = a specific command passes / behaviour observed.
-6. Stop at: commit on a branch and open a PR. Don't merge or push to main unless this brief says the user approved it.
-7. Report back: branch, `git diff --stat`, exact test command and its tail output, PR URL, anything skipped. If blocked, stop and report rather than guess.
+6. Stop at: commit on a local branch. Don't push, open a PR or merge unless this brief says the user approved it.
+7. Report back: branch, `git diff --stat`, exact test command and its tail output, commit hash, anything skipped. If blocked, stop and report rather than guess.
 
 ## Parallelism and failures
 
