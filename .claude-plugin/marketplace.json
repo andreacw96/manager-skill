@@ -1,6 +1,9 @@
 {
   "name": "manager-skill",
-  "owner": { "name": "Andrea Tombolato" },
+  "description": "Manager mode for Claude Code: plan, delegate to the cheapest capable model, verify.",
+  "owner": {
+    "name": "Andrea Tombolato"
+  },
   "plugins": [
     {
       "name": "manager",

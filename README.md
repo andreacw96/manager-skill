@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/andreacw5/manager-skill/main/docs/brand/banner.png" width="500" alt="manager — Claude Code plugin" />
+</p>
+
 # manager — a Claude Code skill
 
 Turns Claude into a **manager, not an executor**. Once invoked, Claude plans the work, writes a brief for each piece, hands it to a separate session or subagent on the **cheapest model that can do it**, checks the evidence each worker returns, and keeps you posted.
